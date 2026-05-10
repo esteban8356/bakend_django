@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&2(glri9*co$=bb6el%#ov8gj!@1%vcc$f4%ub)algr&)h)hc#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -89,10 +89,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sistemVotacion.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
