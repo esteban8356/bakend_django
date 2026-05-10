@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import shutil
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -96,6 +98,14 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Configuración especial para Vercel (SQLite en /tmp)
+if os.environ.get('VERCEL'):
+    db_path = DATABASES['default']['NAME']
+    tmp_db_path = '/tmp/db.sqlite3'
+    if not os.path.exists(tmp_db_path):
+        shutil.copy2(db_path, tmp_db_path)
+    DATABASES['default']['NAME'] = tmp_db_path
 
 
 # Password validation
