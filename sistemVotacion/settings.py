@@ -70,6 +70,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',  # puerto de Vite
+    'https://frotend-django.vercel.app', # frontend en Vercel
 ]
 
 ROOT_URLCONF = 'sistemVotacion.urls'
